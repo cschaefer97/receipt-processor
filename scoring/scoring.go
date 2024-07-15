@@ -6,6 +6,8 @@ import (
 	"strconv"
 	"strings"
 	"unicode"
+
+	"github.com/cschaefer97/receipt-processor/model"
 )
 
 func checkName(name string) int {

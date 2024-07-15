@@ -3,6 +3,7 @@ package main
 import (
 	"net/http"
 
+	"github.com/cschaefer97/receipt-processor/model"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 )
@@ -12,7 +13,7 @@ var ProcessedReceipts = make(map[uuid.UUID]int)
 
 func processReceipt(c *gin.Context) {
 	//evaluates receipt for total points earned and returns generated UUID if valid.
-	var receipt Receipt
+	var receipt model.Receipt
 	if err := c.ShouldBindJSON(&receipt); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
