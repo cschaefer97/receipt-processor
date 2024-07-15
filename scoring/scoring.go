@@ -10,7 +10,7 @@ import (
 	"github.com/cschaefer97/receipt-processor/model"
 )
 
-func checkName(name string) int {
+func CheckName(name string) int {
 	//award one point for each alphanumeric character in retailer name.
 	namePoints := 0
 	for _, character := range name {
@@ -21,7 +21,7 @@ func checkName(name string) int {
 	return namePoints
 }
 
-func checkPrice(total string) int {
+func CheckPrice(total string) int {
 	//award points based on total price. if no change, award 50 points. if only quarters, award 25.
 	points := 0
 	price := strings.Split(total, ".")
@@ -38,13 +38,13 @@ func checkPrice(total string) int {
 	return points
 }
 
-func checkNumItems(items []model.Item) int {
+func CheckNumItems(items []model.Item) int {
 	//award points based on number of items purchased
 	points := len(items) / 2 * 5
 	return points
 }
 
-func checkDescription(items []model.Item) int {
+func CheckDescription(items []model.Item) int {
 	//award points based on number of characters in item description
 	points := 0
 	for _, item := range items {
@@ -57,7 +57,7 @@ func checkDescription(items []model.Item) int {
 	return points
 }
 
-func checkDate(date string) int {
+func CheckDate(date string) int {
 	//if data purchased is odd, return 6 points, otherwise 0.
 	dateArr := strings.Split(date, "-")
 
@@ -73,7 +73,7 @@ func checkDate(date string) int {
 	}
 }
 
-func checkTime(time string) int {
+func CheckTime(time string) int {
 	//if time purchased between 2pm and 4pm, award 10 points, otherwise 0
 	timeArr := strings.Split(time, ":")
 

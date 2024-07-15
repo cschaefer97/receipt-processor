@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/cschaefer97/receipt-processor/model"
+	"github.com/cschaefer97/receipt-processor/scoring"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 )
@@ -20,8 +21,8 @@ func processReceipt(c *gin.Context) {
 	}
 
 	//point evaluation.
-	points := scoring.checkName(receipt.Retailer) + scoring.checkPrice(receipt.Total) + scoring.checkNumItems(receipt.Items) +
-		scoring.checkDescription(receipt.Items) + scoring.checkTime(receipt.PurchaseTime) + scoring.checkDate(receipt.PurchaseDate)
+	points := scoring.CheckName(receipt.Retailer) + scoring.CheckPrice(receipt.Total) + scoring.CheckNumItems(receipt.Items) +
+		scoring.CheckDescription(receipt.Items) + scoring.CheckTime(receipt.PurchaseTime) + scoring.CheckDate(receipt.PurchaseDate)
 
 	//generate UUID and store UUID with point total in key:value pair.
 	id := uuid.New()
